@@ -10,7 +10,8 @@ from .models import (
     TalleresSupergrupo,    
     TalleresSubgrupos,
     ConstanciaLiberacion,  # Agregamos la nueva tabla
-    Reporte                # Importamos la nueva tabla Reporte
+    Reporte,
+    NivelAcceso               # Importamos la nueva tabla Reporte
 )
 
 class AlumnoSerializer(serializers.ModelSerializer):
@@ -68,3 +69,8 @@ class ReporteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reporte
         fields = '__all__'
+
+class NivelAccesoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NivelAcceso
+        fields = '__all__'  # O puedes especificar los campos que quieras incluir

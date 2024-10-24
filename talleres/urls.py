@@ -14,6 +14,8 @@ router.register('talleres_supergrupo', TalleresSupergrupoViewSet)
 router.register('talleres_subgrupos', TalleresSubgruposViewSet)
 router.register('constancias_liberacion', ConstanciaLiberacionViewSet)  # Nueva vista registrada
 router.register('reportes', ReporteViewSet)  # Nueva vista para Reporte
+router.register('nivel_acceso', NivelAccesoViewSet)  # Nueva vista registrada para NivelAcceso
+
 
 urlpatterns = [
     path('api/', include(router.urls)),

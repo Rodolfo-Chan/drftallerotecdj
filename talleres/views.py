@@ -50,3 +50,8 @@ class ConstanciaLiberacionViewSet(viewsets.ModelViewSet):
 class ReporteViewSet(viewsets.ModelViewSet):
     queryset = Reporte.objects.all()
     serializer_class = ReporteSerializer
+    
+# Nueva vista para NivelAcceso
+class NivelAccesoViewSet(viewsets.ModelViewSet):
+    queryset = NivelAcceso.objects.all()  # Recuperamos todos los registros de NivelAcceso
+    serializer_class = NivelAccesoSerializer  # Usamos el serializer de NivelAcceso
