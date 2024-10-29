@@ -15,6 +15,15 @@ from pathlib import Path
 import os
 import dj_database_url
 
+if 'RENDER' in os.environ:
+    DEBUG = False
+    ALLOWED_HOSTS = ['https://drftallerotecdj.onrender.com/']
+    # Otras configuraciones específicas para producción
+
+    # Configuración de la base de datos desde una variable de entorno
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,14 +59,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
     'talleres',
 ]
 
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,7 +74,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+
 ROOT_URLCONF = 'gestion_talleres.urls'
 
 TEMPLATES = [
