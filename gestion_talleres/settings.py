@@ -68,8 +68,9 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+
 CORS_ALLOWED_ORIGINS = [
-    "https://drftallerotecdj.onrender.com/",  # Replace with your frontend origin
+    "https://drftallerotecdj.onrender.com",  # Include only the domain (without path)
 ]
 
 ROOT_URLCONF = 'gestion_talleres.urls'
