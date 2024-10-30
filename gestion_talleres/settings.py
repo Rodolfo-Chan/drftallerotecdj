@@ -71,6 +71,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://drftallerotecdj.onrender.com",  # Include only the domain (without path)
+    "http://localhost:5173",
 ]
 
 ROOT_URLCONF = 'gestion_talleres.urls'
