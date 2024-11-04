@@ -55,3 +55,7 @@ class ReporteViewSet(viewsets.ModelViewSet):
 class NivelAccesoViewSet(viewsets.ModelViewSet):
     queryset = NivelAcceso.objects.all()  # Recuperamos todos los registros de NivelAcceso
     serializer_class = NivelAccesoSerializer  # Usamos el serializer de NivelAcceso
+
+class RubricaReportesViewSet(viewsets.ModelViewSet):
+    queryset = RubricaReportes.objects.all()
+    serializer_class = RubricaReportesSerializer

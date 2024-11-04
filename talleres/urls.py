@@ -15,6 +15,7 @@ router.register('talleres_subgrupos', TalleresSubgruposViewSet)
 router.register('constancias_liberacion', ConstanciaLiberacionViewSet)  # Nueva vista registrada
 router.register('reportes', ReporteViewSet)  # Nueva vista para Reporte
 router.register('nivel_acceso', NivelAccesoViewSet)  # Nueva vista registrada para NivelAcceso
+router.register('rubrica_reportes', RubricaReportesViewSet)
 
 
 urlpatterns = [
