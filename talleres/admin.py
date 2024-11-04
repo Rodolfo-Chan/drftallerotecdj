@@ -19,7 +19,7 @@ from .models import (
 admin.site.register(Alumno)
 admin.site.register(Inscripcion)
 admin.site.register(Instructor)
-admin.site.register(Locacion)
+admin.site.register(Locacion) 
 admin.site.register(Periodo)
 admin.site.register(Horario)
 admin.site.register(UsuarioAdmin)
