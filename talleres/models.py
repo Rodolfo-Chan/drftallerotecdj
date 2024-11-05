@@ -139,12 +139,12 @@ class TalleresSubgrupos(models.Model):
 # Modelo para la tabla Inscripciones
 class Inscripcion(models.Model):
     id_inscripcion = models.AutoField(primary_key=True)
-    id_alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
+    #id_alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
     id_taller_registro = models.ForeignKey(TalleresSubgrupos, on_delete=models.CASCADE)
     estatus = models.CharField(max_length=20)
 
-    def __str__(self):
-        return f'Inscripción de {self.id_alumno} en {self.id_taller_registro}'
+    #def __str__(self):
+    #    return f'Inscripción de {self.id_alumno} en {self.id_taller_registro}'
 
 # Modelo para la tabla Locaciones
 class Locacion(models.Model):
@@ -179,7 +179,7 @@ class Horario(models.Model):
 class ConstanciaLiberacion(models.Model):
     id_constancia = models.AutoField(primary_key=True)
     id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)
-    id_alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
+    #id_alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
     fecha_emision = models.DateField(auto_now_add=True)
     estatus_constancia = models.CharField(max_length=20, choices=[('Pendiente', 'Pendiente'), ('Emitida', 'Emitida')], default='Pendiente')
 
