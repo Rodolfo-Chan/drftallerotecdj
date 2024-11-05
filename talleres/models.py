@@ -40,7 +40,7 @@ class UsuarioAdmin(models.Model):
 # Modelo para la tabla Alumnos
 class Alumno(models.Model):
     #id_alumno = models.AutoField(primary_key=True)
-    id_alumno = models.AutoField(primary_key=True) 
+    id_alum = models.AutoField(primary_key=True) 
     matricula_alumno = models.CharField(
         max_length=8,
         validators=[RegexValidator(r'^\d{8}$', 'La matrícula debe tener exactamente 8 dígitos.')],
