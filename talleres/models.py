@@ -42,7 +42,7 @@ class Alumno(models.Model):
     #id_alumno = models.AutoField(primary_key=True)
     id_alumno = models.AutoField(primary_key=True)  # Use AutoField for an identity column
 
-    matricula_alumno = models.CharField(
+    matricula = models.CharField(
         max_length=8,
         validators=[RegexValidator(r'^\d{8}$', 'La matrícula debe tener exactamente 8 dígitos.')],
         unique=True
