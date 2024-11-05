@@ -186,7 +186,7 @@ class ConstanciaLiberacion(models.Model):
     def __str__(self):
         return f'Constancia {self.id_constancia} - Alumno: {self.id_alumno}'
 
-# Modelo para la tabla Reportes
+# Modelo para la tabla Reportes y archivos 
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
     id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)  # Clave foránea hacia Inscripciones
