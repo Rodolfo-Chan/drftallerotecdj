@@ -175,7 +175,7 @@ class Horario(models.Model):
     def __str__(self):
         return f'Horario: {self.dias} de {self.hora_inicio} a {self.hora_fin}'
 
-# Modelo para la tabla ConstanciaLiberacion
+# Modelo para la tabla Constancia Liberacion 
 class ConstanciaLiberacion(models.Model):
     id_constancia = models.AutoField(primary_key=True)
     id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)
