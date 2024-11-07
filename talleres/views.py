@@ -3,9 +3,19 @@ from rest_framework import viewsets
 from .models import *
 from .serializers import *
 from django.http import HttpResponse
-import requests
+from django.http import JsonResponse
 
-
+def obtener_reporte(request, id_reporte):
+    try:
+        reporte = Reporte.objects.get(id=id_reporte)
+        data = {
+            "id_reporte": reporte.id_reporte,
+            "registro_participantes": reporte.registro_participantes.url,
+            "id_taller_subgrupo": reporte.id_taller_subgrupo.id
+        }
+        return JsonResponse(data)
+    except Reporte.DoesNotExist:
+        return JsonResponse({'error': 'Reporte no encontrado'}, status=404)
 
 class AlumnoViewSet(viewsets.ModelViewSet):
     queryset = Alumno.objects.all()

@@ -4,8 +4,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 import random
 import string
-from django.core.files import File
-from django.core.files.storage import default_storage
+
 # Función para generar contraseñas aleatorias
 def generate_password(length=8):
     characters = string.ascii_letters + string.digits + string.punctuation
@@ -190,7 +189,7 @@ class ConstanciaLiberacion(models.Model):
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
     id_taller_subgrupo = models.ForeignKey(TalleresSubgrupos, on_delete=models.CASCADE)
-    registro_participantes = models.FileField(upload_to='reportes/')  # Campo para el archivo
+    registro_participantes = models.FileField(upload_to='https://drftallerotecdj.onrender.com/media/reportes/')  # Campo para el archivo
 
     def save(self, *args, **kwargs):
         # Guardar el archivo en el sistema de archivos

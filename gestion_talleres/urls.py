@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('talleres/', include('talleres.urls')),  # Incluye las URLs de la aplicación talleres
+    
 ]
 
 if settings.DEBUG:
