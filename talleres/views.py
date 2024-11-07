@@ -2,6 +2,9 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import *
 from .serializers import *
+from django.http import HttpResponse
+import requests
+
 
 
 class AlumnoViewSet(viewsets.ModelViewSet):

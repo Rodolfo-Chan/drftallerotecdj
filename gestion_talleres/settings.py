@@ -17,6 +17,16 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Configuración de AWS S3
+AWS_ACCESS_KEY_ID = 'your-access-key-id'
+AWS_SECRET_ACCESS_KEY = 'your-secret-access-key'
+AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
+
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -55,6 +65,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'talleres',
+    'storages',  # Añade 'storages' aquí
+
 ]
 
 
