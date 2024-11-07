@@ -4,7 +4,8 @@ from django.db import models
 from django.core.validators import RegexValidator
 import random
 import string
-
+from django.core.files import File
+from django.core.files.storage import default_storage
 # Función para generar contraseñas aleatorias
 def generate_password(length=8):
     characters = string.ascii_letters + string.digits + string.punctuation
@@ -188,10 +189,21 @@ class ConstanciaLiberacion(models.Model):
 # Modelo para la tabla Reportes y archivos 
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
-    id_taller_subgrupo = models.ForeignKey(TalleresSubgrupos, on_delete=models.CASCADE)  # Clave foránea a TalleresSubgrupos
-    registro_participantes = models.FileField(upload_to='reportes/participantes/', blank=True, null=True)
-    evaluacion_desempeno = models.FileField(upload_to='reportes/evaluacion/', blank=True, null=True)
+    id_taller_subgrupo = models.ForeignKey(TalleresSubgrupos, on_delete=models.CASCADE)
+    registro_participantes = models.FileField(upload_to='reportes/')  # Campo para el archivo
 
+    def save(self, *args, **kwargs):
+        # Guardar el archivo en el sistema de archivos
+        super().save(*args, **kwargs)
+        if self.registro_participantes:
+            # Verificar si el archivo es PDF o Word
+            if not self.registro_participantes.name.endswith(('.pdf', '.docx')):
+                raise ValueError('Solo se permiten archivos PDF o Word.')
+
+    def delete(self, *args, **kwargs):
+        # Eliminar el archivo del sistema de archivos
+        self.registro_participantes.delete(save=False)
+        super().delete(*args, **kwargs)
     def __str__(self):
         return f'Reporte {self.id_reporte} - Taller Subgrupo: {self.id_taller_subgrupo}'
 
