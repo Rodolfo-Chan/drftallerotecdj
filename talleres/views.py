@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .models import *
 from .serializers import *
 
+
 class AlumnoViewSet(viewsets.ModelViewSet):
     queryset = Alumno.objects.all()
     serializer_class = AlumnoSerializer
@@ -59,3 +60,4 @@ class NivelAccesoViewSet(viewsets.ModelViewSet):
 class RubricaReportesViewSet(viewsets.ModelViewSet):
     queryset = RubricaReportes.objects.all()
     serializer_class = RubricaReportesSerializer
+

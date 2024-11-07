@@ -1,3 +1,4 @@
+#admin.py
 from django.contrib import admin
 from .models import (
     Alumno,
@@ -29,3 +30,7 @@ admin.site.register(TalleresSubgrupos)
 admin.site.register(ConstanciaLiberacion)
 admin.site.register(Reporte)
 admin.site.register(RubricaReportes)  
+class AlumnoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'apellido_paterno', 'apellido_materno', 'fecha_inscripcion')
+    search_fields = ('nombre', 'apellido_paterno')
+    list_filter = ('nivel_acceso',)

@@ -131,7 +131,7 @@ class TalleresSubgrupos(models.Model):
     dias_taller = models.CharField(max_length=200)  # Para almacenar los días como Lunes, Miércoles, etc.
     puntos_taller = models.IntegerField()
     cupo_taller = models.IntegerField()
-    tipo_taller = models.CharField(max_length=100)
+    tipo_taller = models.CharField(max_length=100) 
 
     def __str__(self):
         return f'{self.id_taller_catalogo} - {self.tipo_taller}'
@@ -178,10 +178,9 @@ class Horario(models.Model):
 # Modelo para la tabla Constancia Liberacion 
 class ConstanciaLiberacion(models.Model):
     id_constancia = models.AutoField(primary_key=True)
-    id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)
     id_alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
     fecha_emision = models.DateField(auto_now_add=True)
-    estatus_constancia = models.CharField(max_length=20, choices=[('Pendiente', 'Pendiente'), ('Emitida', 'Emitida')], default='Pendiente')
+    contancia_liberacion = models.FileField(upload_to='contancia/liberacion/', blank=True, null=True)
 
     def __str__(self):
         return f'Constancia {self.id_constancia} - Alumno: {self.id_alumno}'
@@ -189,10 +188,10 @@ class ConstanciaLiberacion(models.Model):
 # Modelo para la tabla Reportes y archivos 
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
-    id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)  # Clave foránea hacia Inscripciones
-    id_instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)  # Clave foránea hacia Instructores
-    registro_participantes = models.FileField(upload_to='reportes/participantes/', blank=True, null=True)  # Almacenar archivo PDF
-    evaluacion_desempeno = models.FileField(upload_to='reportes/evaluacion/', blank=True, null=True)  # Almacenar archivo PDF
+    id_taller_subgrupo = models.ForeignKey(TalleresSubgrupos, on_delete=models.CASCADE)  # Clave foránea a TalleresSubgrupos
+    registro_participantes = models.FileField(upload_to='reportes/participantes/', blank=True, null=True)
+    evaluacion_desempeno = models.FileField(upload_to='reportes/evaluacion/', blank=True, null=True)
 
     def __str__(self):
-        return f'Reporte {self.id_reporte} - Inscripción: {self.id_inscripcion}'
+        return f'Reporte {self.id_reporte} - Taller Subgrupo: {self.id_taller_subgrupo}'
+

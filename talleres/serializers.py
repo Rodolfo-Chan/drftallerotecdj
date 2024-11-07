@@ -15,6 +15,28 @@ from .models import (
     RubricaReportes
 )
 
+
+class ReporteSerializer(serializers.ModelSerializer):
+    registro_participantes_url = serializers.SerializerMethodField()
+    evaluacion_desempeno_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Reporte
+        fields = ['id_reporte', 'registro_participantes', 'registro_participantes_url', 
+                  'evaluacion_desempeno', 'evaluacion_desempeno_url', 'id_taller_subgrupo']
+
+    def get_registro_participantes_url(self, obj):
+        request = self.context.get('request')
+        if obj.registro_participantes and request:
+            return request.build_absolute_uri(obj.registro_participantes.url)
+        return None
+
+    def get_evaluacion_desempeno_url(self, obj):
+        request = self.context.get('request')
+        if obj.evaluacion_desempeno and request:
+            return request.build_absolute_uri(obj.evaluacion_desempeno.url)
+        return None
+
 class AlumnoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alumno
