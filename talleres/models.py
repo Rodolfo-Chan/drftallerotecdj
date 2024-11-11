@@ -118,35 +118,23 @@ class TalleresSupergrupo(models.Model):
         return self.nombre_taller
 
 # Modelo para la tabla Talleres_Subgrupos
-from django.db import models
-
-# Modelo para la tabla Talleres_Subgrupos
 class TalleresSubgrupos(models.Model):
     id_taller_registro = models.AutoField(primary_key=True)
-    id_taller_catalogo = models.ForeignKey('TalleresSupergrupo', on_delete=models.CASCADE)
-    id_instructor = models.ForeignKey('Instructor', on_delete=models.CASCADE)
+    id_taller_catalogo = models.ForeignKey(TalleresSupergrupo, on_delete=models.CASCADE)
+    id_instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
     periodo_escolar = models.CharField(max_length=100)
     ubicacion = models.CharField(max_length=100)
     turno_taller = models.CharField(max_length=50)
     hora_inicio = models.TimeField()
     hora_final = models.TimeField()
-    estatus_card = models.BooleanField(default=True)
-    dias_taller = models.CharField(max_length=200)
+    estatus_card = models.BooleanField(default=True)  # True si está activo, False si no
+    dias_taller = models.CharField(max_length=200)  # Para almacenar los días como Lunes, Miércoles, etc.
     puntos_taller = models.IntegerField()
     cupo_taller = models.IntegerField()
-    tipo_taller = models.CharField(max_length=100)
-
-    @property
-    def hora_inicio_formateada(self):
-        return self.hora_inicio.strftime('%H:%M')
-
-    @property
-    def hora_final_formateada(self):
-        return self.hora_final.strftime('%H:%M')
+    tipo_taller = models.CharField(max_length=100) 
 
     def __str__(self):
         return f'{self.id_taller_catalogo} - {self.tipo_taller}'
-
 
 # Modelo para la tabla Inscripciones
 class Inscripcion(models.Model):
