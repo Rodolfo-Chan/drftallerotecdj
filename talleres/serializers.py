@@ -73,9 +73,19 @@ class TalleresSupergrupoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TalleresSubgruposSerializer(serializers.ModelSerializer):
+    hora_inicio = serializers.SerializerMethodField()
+    hora_final = serializers.SerializerMethodField()
+
     class Meta:
-        model = TalleresSubgrupos  
+        model = TalleresSubgrupos
         fields = '__all__'
+
+    def get_hora_inicio(self, obj):
+        return obj.hora_inicio.strftime('%I:%M %p')
+
+    def get_hora_final(self, obj):
+        return obj.hora_final.strftime('%I:%M %p')
+
 
 class UsuarioAdminSerializer(serializers.ModelSerializer):
     class Meta:
