@@ -1,4 +1,6 @@
+#serializers.py
 from rest_framework import serializers
+from datetime import datetime
 from .models import (
     Alumno,
     Instructor,
@@ -73,9 +75,24 @@ class TalleresSupergrupoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TalleresSubgruposSerializer(serializers.ModelSerializer):
+    hora_inicio = serializers.SerializerMethodField()
+    hora_final = serializers.SerializerMethodField()
+
     class Meta:
-        model = TalleresSubgrupos  
-        fields = '__all__'
+        model = TalleresSubgrupos
+        fields = ['id_taller_registro', 'id_taller_catalogo', 'id_instructor', 'periodo_escolar', 
+                  'ubicacion', 'turno_taller', 'hora_inicio', 'hora_final', 'estatus_card', 
+                  'dias_taller', 'puntos_taller', 'cupo_taller', 'tipo_taller']
+
+    def get_hora_inicio(self, obj):
+        if obj.hora_inicio:
+            return obj.hora_inicio.strftime("%I:%M %p")  # Formato de 12 horas
+        return None
+
+    def get_hora_final(self, obj):
+        if obj.hora_final:
+            return obj.hora_final.strftime("%I:%M %p")  # Formato de 12 horas
+        return None
 
 class UsuarioAdminSerializer(serializers.ModelSerializer):
     class Meta:
