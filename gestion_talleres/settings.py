@@ -85,10 +85,9 @@ MIDDLEWARE = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://drftallerotecdj.onrender.com",  # Include only the domain (without path)
-    "http://localhost:5173",
+    "https://drftallerotecdj.onrender.com",  # your deployed API domain
+    "http://localhost:5174",  # your local React frontend domain
 ]
-
 ROOT_URLCONF = 'gestion_talleres.urls'
 
 TEMPLATES = [
