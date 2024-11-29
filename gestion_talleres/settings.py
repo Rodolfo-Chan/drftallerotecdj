@@ -86,7 +86,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://drftallerotecdj.onrender.com",  # your deployed API domain
-    "http://localhost:5174",  # your local React frontend domain
+    "http://localhost:5174",
+    "https://tallerotec.netlify.app"  # your local React frontend domain
 ]
 ROOT_URLCONF = 'gestion_talleres.urls'
 
