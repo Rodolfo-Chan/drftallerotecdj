@@ -1,6 +1,6 @@
 # TalleroTec
 
-**TalleroTec** es una plataforma web desarrollada con **Python** y **Django** que permite gestionar eficientemente los talleres deportivos del Tecnológico de Tizimín.
+**TalleroTec** es una plataforma web desarrollada con **Python** y **Django** que permite gestionar eficientemente los talleres deportivos.
 
 ## 🎯 Funcionalidades principales
 
